@@ -1,28 +1,28 @@
-const movieContentHtml = document.querySelector(".movie-content");
-const moviePlacehold = document.querySelector(".movie-placehold");
+const movieContentHtml = document.querySelector('.movie-content');
+const moviePlacehold = document.querySelector('.movie-placehold');
 var movieArr;
 
 function getData() {
-	movieArr = JSON.parse(localStorage.getItem("movieArr"));
+	movieArr = JSON.parse(localStorage.getItem('movieArr'));
 }
 
 getData();
 
 function clearData() {
 	if (movieArr.length >= 1) {
-		moviePlacehold.style.display = "none";
+		moviePlacehold.style.display = 'none';
 	} else {
-		moviePlacehold.style.display = "flex";
+		moviePlacehold.style.display = 'flex';
 	}
 }
 
 clearData();
 
 async function postData() {
-	movieContentHtml.innerHTML = "";
+	movieContentHtml.innerHTML = '';
 	for (var i = 0; i < movieArr.length; i++) {
 		const res = await fetch(
-			`http://www.omdbapi.com/?apikey=TEST&t=${movieArr[i].Title}`
+			`http://www.omdbapi.com/?apikey=4e5a6d0c&t=${movieArr[i].Title}`
 		);
 		const movieData = await res.json();
 		movieContentHtml.innerHTML += `<div class="movie">
@@ -35,15 +35,15 @@ async function postData() {
 				</div>`;
 	}
 	const watchlistRemoveBtns = document.querySelectorAll(
-		".watchlist-remove-btn"
+		'.watchlist-remove-btn'
 	);
 	for (let i = 0; i < movieArr.length; i++) {
-		watchlistRemoveBtns[i].addEventListener("click", function () {
-			var exisiting = JSON.parse(localStorage.getItem("movieArr"));
+		watchlistRemoveBtns[i].addEventListener('click', function () {
+			var exisiting = JSON.parse(localStorage.getItem('movieArr'));
 			if (exisiting == null) exisiting = [];
 			exisiting.splice(i, 1);
 			movieArr.splice(i, 1);
-			localStorage.setItem("movieArr", JSON.stringify(exisiting));
+			localStorage.setItem('movieArr', JSON.stringify(exisiting));
 			postData();
 			clearData();
 		});

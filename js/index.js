@@ -1,25 +1,25 @@
-const searchButton = document.querySelector(".search-btn");
-const searchInput = document.querySelector(".search-input");
-const movieContentHtml = document.querySelector(".movie-content");
-const searchForm = document.querySelector(".search-form");
+const searchButton = document.querySelector('.search-btn');
+const searchInput = document.querySelector('.search-input');
+const movieContentHtml = document.querySelector('.movie-content');
+const searchForm = document.querySelector('.search-form');
 var movieListArr = [];
 var localMovieArr = [];
 var movieArrLocalStorage;
 
 async function handleClick() {
 	const res = await fetch(
-		`http://www.omdbapi.com/?apikey=TEST&s=${searchInput.value}&type=movie`
+		`http://www.omdbapi.com/?apikey=4e5a6d0c&s=${searchInput.value}&type=movie`
 	);
 	const data = await res.json();
 	movieListArr = data.Search.slice(0, 5);
-	movieContentHtml.innerHTML = "";
+	movieContentHtml.innerHTML = '';
 	postData();
 }
 
 async function postData() {
 	for (var i = 0; i < movieListArr.length; i++) {
 		const res = await fetch(
-			`http://www.omdbapi.com/?apikey=TEST&t=${movieListArr[i].Title}`
+			`http://www.omdbapi.com/?apikey=4e5a6d0c&t=${movieListArr[i].Title}`
 		);
 		const movieData = await res.json();
 		movieContentHtml.innerHTML += `<div class="movie">
@@ -31,28 +31,28 @@ async function postData() {
 				</div>	
 				</div>`;
 	}
-	const watchlistBtns = document.querySelectorAll(".watchlist-add-btn");
+	const watchlistBtns = document.querySelectorAll('.watchlist-add-btn');
 	for (let i = 0; i < movieListArr.length; i++) {
-		watchlistBtns[i].addEventListener("click", callback(i));
-		watchlistBtns[i].addEventListener("click", function () {
-			watchlistBtns[i].innerHTML = "Added to watchlist!";
-			watchlistBtns[i].style.backgroundImage = "none";
-			watchlistBtns[i].style.cursor = "default";
+		watchlistBtns[i].addEventListener('click', callback(i));
+		watchlistBtns[i].addEventListener('click', function () {
+			watchlistBtns[i].innerHTML = 'Added to watchlist!';
+			watchlistBtns[i].style.backgroundImage = 'none';
+			watchlistBtns[i].style.cursor = 'default';
 			watchlistBtns[i].disabled = true;
 		});
 	}
 }
 
-searchForm.addEventListener("submit", (e) => {
+searchForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	handleClick();
 });
 
 function callback(x) {
 	return function addEntry() {
-		var exisiting = JSON.parse(localStorage.getItem("movieArr"));
+		var exisiting = JSON.parse(localStorage.getItem('movieArr'));
 		if (exisiting == null) exisiting = [];
 		exisiting.push(movieListArr[x]);
-		localStorage.setItem("movieArr", JSON.stringify(exisiting));
+		localStorage.setItem('movieArr', JSON.stringify(exisiting));
 	};
 }
