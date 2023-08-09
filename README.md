@@ -2,9 +2,6 @@
 
 An app that connects to the omdbapi to display movie data with ability to save movies to a watchlist
 
-API Key set to test. For an API key, go to: 
-https://www.omdbapi.com/apikey.aspx
-
 ![homepage](https://user-images.githubusercontent.com/105099652/172991391-be30b279-da74-4ec1-a613-e17208c2a328.png)
 
 ![search page](https://user-images.githubusercontent.com/105099652/172991392-726b47c0-4cc5-46e3-8a21-84e5931cb7c0.png)
