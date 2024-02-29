@@ -1,3 +1,5 @@
+/* Copyright (c) 2024 Dante Passalacqua */
+
 const movieContentHtml = document.querySelector('.movie-content');
 const moviePlacehold = document.querySelector('.movie-placehold');
 var movieArr;

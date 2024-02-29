@@ -1,3 +1,5 @@
+/* Copyright (c) 2024 Dante Passalacqua */
+
 const searchButton = document.querySelector('.search-btn');
 const searchInput = document.querySelector('.search-input');
 const movieContentHtml = document.querySelector('.movie-content');
